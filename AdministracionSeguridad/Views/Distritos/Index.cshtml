@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Distritos>
+
+@{
+    ViewBag.Title = "Distritos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Distritos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo distrito", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreDistrito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantones.NombreCanton)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantones.NombreCanton)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.DistritoID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.DistritoID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.DistritoID })
+        </td>
+    </tr>
+}
+
+</table>

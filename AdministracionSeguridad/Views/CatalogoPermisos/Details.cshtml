@@ -1,0 +1,43 @@
+﻿@model AdministracionSeguridad.Controllers.CatalogoPermisos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CatalogoPermisos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionPermiso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionPermiso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatalogoPermisos1.DescripcionPermiso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatalogoPermisos1.DescripcionPermiso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatalogoPermisos2.DescripcionPermiso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatalogoPermisos2.DescripcionPermiso)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PermisoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

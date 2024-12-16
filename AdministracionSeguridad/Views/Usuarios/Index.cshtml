@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Usuarios>
+
+@{
+    ViewBag.Title = "Perfiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Perfiles</h2>
+
+<p>
+    @Html.ActionLink("Crear usuario", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Apellido1)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Apellido2)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Email)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Clave)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FechaActualizacion)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().UsuarioNombre)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FotoPath)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Login.Usuario)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Roles.NombreRol)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Apellido1)</td>
+                <td>@Html.DisplayFor(modelItem => item.Apellido2)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Clave)</td>
+                <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                <td>@Html.DisplayFor(modelItem => item.FechaActualizacion)</td>
+                <td>@Html.DisplayFor(modelItem => item.UsuarioNombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.FotoPath)</td>
+                <td>@Html.DisplayFor(modelItem => item.Login.Usuario)</td>
+                <td>@Html.DisplayFor(modelItem => item.Roles.NombreRol)</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.UsuarioID }, new { @class = "btn btn-primary btn-sm" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.UsuarioID }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.UsuarioID }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

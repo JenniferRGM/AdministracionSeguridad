@@ -1,0 +1,91 @@
+﻿@model AdministracionSeguridad.Controllers.Roles_Permisos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Roles_Permisos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PermisoLectura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermisoLectura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PermisoEscritura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermisoEscritura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PermisoModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermisoModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PermisoEliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermisoEliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaActualizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaActualizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Menus.NombreMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menus.NombreMenu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Permisos.NombrePermiso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Permisos.NombrePermiso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.NombreRol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.NombreRol)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

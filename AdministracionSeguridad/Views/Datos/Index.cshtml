@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Datos>
+
+@{
+    ViewBag.Title = "Página de Datos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Página de Datos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo dato", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaActualizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorias.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios1.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoEvento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaActualizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorias.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios1.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

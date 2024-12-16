@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92e54e173b0e4b33844d74d6380a7547" Name="Diagram1">
+        <EntityTypeShape EntityType="AdminSeguridadModel.Cantones" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.CatalogoPermisos" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Categorias" Width="1.5" PointX="6" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Configuraciones" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Datos" Width="1.5" PointX="8.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Distritos" Width="1.5" PointX="6" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Login" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Menus" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Permisos" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Provincias" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Reportes" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Roles" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Roles_Permisos" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Telefonos" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Ubicaciones" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminSeguridadModel.Usuarios" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Cantones__Provin__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Distritos__Canto__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Ubicacion__Canto__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK_CatalogoPermisos_CatalogoPermisos" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK_Datos_Categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK_Configuraciones_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Datos__UsuarioID__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK_Datos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Ubicacion__Distr__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Login__UsuarioID__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK_Login_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Roles_Per__MenuI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Roles_Per__Permi__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Ubicacion__Provi__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Reportes__Usuari__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Roles_Per__RolID__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Usuarios__RolID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Telefonos__Usuar__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="AdminSeguridadModel.FK__Ubicacion__Usuar__693CA210" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

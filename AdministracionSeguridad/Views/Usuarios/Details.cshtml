@@ -1,0 +1,95 @@
+﻿@model AdministracionSeguridad.Controllers.Usuarios
+
+@{
+    ViewBag.Title = "Detalles de Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles del Usuario</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Apellido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Apellido2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaActualizacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaActualizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioNombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioNombre)
+        </dd>
+
+        <dt>
+            Foto de Perfil
+        </dt>
+        <dd>
+            <img src="@Model.FotoPath" alt="Foto de Perfil" style="max-width: 150px; max-height: 150px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login.Usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Login.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.NombreRol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Roles.NombreRol)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.UsuarioID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Volver a la Lista", "Index", null, new { @class = "btn btn-secondary" })
+</p>

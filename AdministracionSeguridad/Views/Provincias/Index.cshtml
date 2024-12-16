@@ -1,0 +1,34 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Provincias>
+
+@{
+    ViewBag.Title = "Acceso a Provincias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Acceso a Provincias</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva provincia", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProvincia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProvincia)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ProvinciaID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ProvinciaID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ProvinciaID })
+        </td>
+    </tr>
+}
+
+</table>

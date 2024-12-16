@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Ubicaciones>
+
+@{
+    ViewBag.Title = "Direcciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ubicaciones</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva dirección", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OtrasSenias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantones.NombreCanton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distritos.NombreDistrito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Provincias.NombreProvincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtrasSenias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantones.NombreCanton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distritos.NombreDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Provincias.NombreProvincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.UbicacionID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.UbicacionID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.UbicacionID })
+        </td>
+    </tr>
+}
+
+</table>

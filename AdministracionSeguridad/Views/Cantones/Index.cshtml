@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Cantones>
+
+@{
+    ViewBag.Title = "Gestión de Cantones";
+}
+
+<h2>Gestión de Cantones</h2>
+
+<!-- Filtro por Provincia -->
+@using (Html.BeginForm("Index", "Cantones", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Provincia", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownList("provinciaID", (SelectList)ViewBag.ProvinciaID, "-- Seleccione Provincia --", new { @class = "form-control", onchange = "this.form.submit();" })
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().NombreCanton)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Provincias.NombreProvincia)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NombreCanton)</td>
+                <td>@Html.DisplayFor(modelItem => item.Provincias.NombreProvincia)</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.CantonID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.CantonID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

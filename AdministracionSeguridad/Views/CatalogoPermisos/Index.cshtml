@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.CatalogoPermisos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DescripcionPermiso)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionPermiso)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.PermisoID }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.PermisoID }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.PermisoID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

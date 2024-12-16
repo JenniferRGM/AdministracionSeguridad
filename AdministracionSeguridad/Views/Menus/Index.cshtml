@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Menus>
+
+@{
+    ViewBag.Title = "Accesos de menús";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Accesos de menús</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreMenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreMenu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URL)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.MenuID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.MenuID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.MenuID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Roles_Permisos>
+
+@{
+    ViewBag.Title = "Permisos en rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Permisos del rol</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PermisoLectura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermisoEscritura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermisoModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermisoEliminacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaActualizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menus.NombreMenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Permisos.NombrePermiso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles.NombreRol)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermisoLectura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermisoEscritura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermisoModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermisoEliminacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaActualizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menus.NombreMenu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Permisos.NombrePermiso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Roles.NombreRol)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

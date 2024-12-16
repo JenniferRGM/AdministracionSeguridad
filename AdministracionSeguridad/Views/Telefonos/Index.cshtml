@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AdministracionSeguridad.Controllers.Telefonos>
+
+@{
+    ViewBag.Title = "Telefonos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Números de Telefonos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo número", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.TelefonoID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.TelefonoID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.TelefonoID })
+        </td>
+    </tr>
+}
+
+</table>

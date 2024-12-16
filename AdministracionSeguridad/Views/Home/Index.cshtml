@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Página de Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center mt-5">
+    <h1>Bienvenido al Administrador de Seguridad</h1>
+    <p class="lead">Administra usuarios, roles, permisos y más desde esta aplicación.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <h3>Gestión de Usuarios</h3>
+            <p>Agrega, edita y elimina usuarios del sistema.</p>
+            <a href="@Url.Action("Index", "Usuarios")" class="btn btn-primary">Ir a Usuarios</a>
+        </div>
+        <div class="col-md-4">
+            <h3>Configuraciones</h3>
+            <p>Accede a las configuraciones principales del sistema.</p>
+            <a href="@Url.Action("Index", "Configuraciones")" class="btn btn-success">Ir a Configuraciones</a>
+        </div>
+        <div class="col-md-4">
+            <h3>Reportes</h3>
+            <p>Consulta los reportes generados por el sistema.</p>
+            <a href="@Url.Action("Index", "Reportes")" class="btn btn-info">Ir a Reportes</a>
+        </div>
+    </div>
+</div>

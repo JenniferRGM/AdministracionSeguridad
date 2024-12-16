@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AdministracionSeguridad.ViewModels.RolesPermisosViewModel>
+
+@{
+    ViewBag.Title = "PermisosPorRol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Permisos Por Rol</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre del Menú</th>
+            <th>Permiso de Lectura</th>
+            <th>Permiso de Escritura</th>
+            <th>Permiso de Modificación</th>
+            <th>Permiso de Eliminación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreMenu</td>
+                <td>@(item.PermisoLectura ? "Sí" : "No")</td>
+                <td>@(item.PermisoEscritura ? "Sí" : "No")</td>
+                <td>@(item.PermisoModificacion ? "Sí" : "No")</td>
+                <td>@(item.PermisoEliminacion ? "Sí" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>

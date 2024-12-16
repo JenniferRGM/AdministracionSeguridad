@@ -1,0 +1,1235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdminSeguridadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cantones">
+          <Key>
+            <PropertyRef Name="CantonID" />
+          </Key>
+          <Property Name="CantonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCanton" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProvinciaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogoPermisos">
+          <Key>
+            <PropertyRef Name="PermisoID" />
+          </Key>
+          <Property Name="PermisoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionPermiso" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Valor" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Modulo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoEvento" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoriaID" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Distritos">
+          <Key>
+            <PropertyRef Name="DistritoID" />
+          </Key>
+          <Property Name="DistritoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreDistrito" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CantonID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RolID" Type="int" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMenu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
+          <Property Name="GrupoMenu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="PermisoID" />
+          </Key>
+          <Property Name="PermisoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombrePermiso" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="ProvinciaID" />
+          </Key>
+          <Property Name="ProvinciaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProvincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reportes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRol" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles_Permisos">
+          <Key>
+            <PropertyRef Name="RolID" />
+            <PropertyRef Name="PermisoID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="RolID" Type="int" Nullable="false" />
+          <Property Name="PermisoID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="PermisoLectura" Type="bit" Nullable="false" />
+          <Property Name="PermisoEscritura" Type="bit" Nullable="false" />
+          <Property Name="PermisoModificacion" Type="bit" Nullable="false" />
+          <Property Name="PermisoEliminacion" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="date" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="TelefonoID" />
+          </Key>
+          <Property Name="TelefonoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="CodigoPais" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ubicaciones">
+          <Key>
+            <PropertyRef Name="UbicacionID" />
+          </Key>
+          <Property Name="UbicacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="ProvinciaID" Type="int" Nullable="false" />
+          <Property Name="CantonID" Type="int" Nullable="false" />
+          <Property Name="DistritoID" Type="int" Nullable="false" />
+          <Property Name="OtrasSenias" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaCreacion" Type="date" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="date" Nullable="false" />
+          <Property Name="RolID" Type="int" Nullable="false" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FotoPath" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Cantones__Provin__619B8048">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Datos__UsuarioID__04E4BC85">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Distritos__Canto__656C112C">
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="1" />
+          <End Role="Distritos" Type="Self.Distritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="CantonID" />
+            </Principal>
+            <Dependent Role="Distritos">
+              <PropertyRef Name="CantonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__UsuarioID__71D1E811">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reportes__Usuari__160F4887">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Reportes" Type="Self.Reportes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Reportes">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__MenuI__5AEE82B9">
+          <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menus">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__Permi__59FA5E80">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="PermisoID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="PermisoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__RolID__59063A47">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Telefonos__Usuar__5070F446">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Canto__6B24EA82">
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="CantonID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="CantonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Distr__6C190EBB">
+          <End Role="Distritos" Type="Self.Distritos" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distritos">
+              <PropertyRef Name="DistritoID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="DistritoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Provi__6A30C649">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Usuar__693CA210">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__RolID__4D94879B">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogoPermisos_CatalogoPermisos">
+          <End Role="CatalogoPermisos" Type="Self.CatalogoPermisos" Multiplicity="1" />
+          <End Role="CatalogoPermisos1" Type="Self.CatalogoPermisos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoPermisos">
+              <PropertyRef Name="PermisoID" />
+            </Principal>
+            <Dependent Role="CatalogoPermisos1">
+              <PropertyRef Name="PermisoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuraciones_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Configuraciones" Type="Self.Configuraciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Configuraciones">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datos_Categorias">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="CategoriaID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="CategoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdminSeguridadModelStoreContainer">
+          <EntitySet Name="Cantones" EntityType="Self.Cantones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogoPermisos" EntityType="Self.CatalogoPermisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distritos" EntityType="Self.Distritos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reportes" EntityType="Self.Reportes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles_Permisos" EntityType="Self.Roles_Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cantones__Provin__619B8048" Association="Self.FK__Cantones__Provin__619B8048">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Datos__UsuarioID__04E4BC85" Association="Self.FK__Datos__UsuarioID__04E4BC85">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Distritos__Canto__656C112C" Association="Self.FK__Distritos__Canto__656C112C">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Distritos" EntitySet="Distritos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__UsuarioID__71D1E811" Association="Self.FK__Login__UsuarioID__71D1E811">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reportes__Usuari__160F4887" Association="Self.FK__Reportes__Usuari__160F4887">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Reportes" EntitySet="Reportes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__MenuI__5AEE82B9" Association="Self.FK__Roles_Per__MenuI__5AEE82B9">
+            <End Role="Menus" EntitySet="Menus" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__Permi__59FA5E80" Association="Self.FK__Roles_Per__Permi__59FA5E80">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__RolID__59063A47" Association="Self.FK__Roles_Per__RolID__59063A47">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Telefonos__Usuar__5070F446" Association="Self.FK__Telefonos__Usuar__5070F446">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Canto__6B24EA82" Association="Self.FK__Ubicacion__Canto__6B24EA82">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Distr__6C190EBB" Association="Self.FK__Ubicacion__Distr__6C190EBB">
+            <End Role="Distritos" EntitySet="Distritos" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Provi__6A30C649" Association="Self.FK__Ubicacion__Provi__6A30C649">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Usuar__693CA210" Association="Self.FK__Ubicacion__Usuar__693CA210">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__RolID__4D94879B" Association="Self.FK__Usuarios__RolID__4D94879B">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogoPermisos_CatalogoPermisos" Association="Self.FK_CatalogoPermisos_CatalogoPermisos">
+            <End Role="CatalogoPermisos" EntitySet="CatalogoPermisos" />
+            <End Role="CatalogoPermisos1" EntitySet="CatalogoPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuraciones_Usuarios" Association="Self.FK_Configuraciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datos_Categorias" Association="Self.FK_Datos_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datos_Usuarios" Association="Self.FK_Datos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Roles" Association="Self.FK_Login_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdminSeguridadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cantones">
+          <Key>
+            <PropertyRef Name="CantonID" />
+          </Key>
+          <Property Name="CantonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCanton" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Provincias" Relationship="Self.FK__Cantones__Provin__619B8048" FromRole="Cantones" ToRole="Provincias" />
+          <NavigationProperty Name="Distritos" Relationship="Self.FK__Distritos__Canto__656C112C" FromRole="Cantones" ToRole="Distritos" />
+          <NavigationProperty Name="Ubicaciones" Relationship="Self.FK__Ubicacion__Canto__6B24EA82" FromRole="Cantones" ToRole="Ubicaciones" />
+        </EntityType>
+        <EntityType Name="CatalogoPermisos">
+          <Key>
+            <PropertyRef Name="PermisoID" />
+          </Key>
+          <Property Name="PermisoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionPermiso" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CatalogoPermisos1" Relationship="Self.FK_CatalogoPermisos_CatalogoPermisos" FromRole="CatalogoPermisos" ToRole="CatalogoPermisos1" />
+          <NavigationProperty Name="CatalogoPermisos2" Relationship="Self.FK_CatalogoPermisos_CatalogoPermisos" FromRole="CatalogoPermisos1" ToRole="CatalogoPermisos" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="CategoriaID" />
+          </Key>
+          <Property Name="CategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Datos" Relationship="Self.FK_Datos_Categorias" FromRole="Categorias" ToRole="Datos" />
+        </EntityType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Configuraciones_Usuarios" FromRole="Configuraciones" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoriaID" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK_Datos_Categorias" FromRole="Datos" ToRole="Categorias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Datos__UsuarioID__04E4BC85" FromRole="Datos" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.FK_Datos_Usuarios" FromRole="Datos" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Distritos">
+          <Key>
+            <PropertyRef Name="DistritoID" />
+          </Key>
+          <Property Name="DistritoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreDistrito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CantonID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cantones" Relationship="Self.FK__Distritos__Canto__656C112C" FromRole="Distritos" ToRole="Cantones" />
+          <NavigationProperty Name="Ubicaciones" Relationship="Self.FK__Ubicacion__Distr__6C190EBB" FromRole="Distritos" ToRole="Ubicaciones" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RolID" Type="Int32" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Login__UsuarioID__71D1E811" FromRole="Login" ToRole="Usuarios" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Login_Roles" FromRole="Login" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Roles_Permisos" Relationship="Self.FK__Roles_Per__MenuI__5AEE82B9" FromRole="Menus" ToRole="Roles_Permisos" />
+          <Property Name="GrupoMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="PermisoID" />
+          </Key>
+          <Property Name="PermisoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombrePermiso" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Roles_Permisos" Relationship="Self.FK__Roles_Per__Permi__59FA5E80" FromRole="Permisos" ToRole="Roles_Permisos" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="ProvinciaID" />
+          </Key>
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProvincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cantones" Relationship="Self.FK__Cantones__Provin__619B8048" FromRole="Provincias" ToRole="Cantones" />
+          <NavigationProperty Name="Ubicaciones" Relationship="Self.FK__Ubicacion__Provi__6A30C649" FromRole="Provincias" ToRole="Ubicaciones" />
+        </EntityType>
+        <EntityType Name="Reportes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Reportes__Usuari__160F4887" FromRole="Reportes" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_Login_Roles" FromRole="Roles" ToRole="Login" />
+          <NavigationProperty Name="Roles_Permisos" Relationship="Self.FK__Roles_Per__RolID__59063A47" FromRole="Roles" ToRole="Roles_Permisos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__RolID__4D94879B" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles_Permisos">
+          <Key>
+            <PropertyRef Name="RolID" />
+            <PropertyRef Name="PermisoID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" />
+          <Property Name="PermisoID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="PermisoLectura" Type="Boolean" Nullable="false" />
+          <Property Name="PermisoEscritura" Type="Boolean" Nullable="false" />
+          <Property Name="PermisoModificacion" Type="Boolean" Nullable="false" />
+          <Property Name="PermisoEliminacion" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaActualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Menus" Relationship="Self.FK__Roles_Per__MenuI__5AEE82B9" FromRole="Roles_Permisos" ToRole="Menus" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK__Roles_Per__Permi__59FA5E80" FromRole="Roles_Permisos" ToRole="Permisos" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Roles_Per__RolID__59063A47" FromRole="Roles_Permisos" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="TelefonoID" />
+          </Key>
+          <Property Name="TelefonoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="CodigoPais" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Telefonos__Usuar__5070F446" FromRole="Telefonos" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Ubicaciones">
+          <Key>
+            <PropertyRef Name="UbicacionID" />
+          </Key>
+          <Property Name="UbicacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" />
+          <Property Name="CantonID" Type="Int32" Nullable="false" />
+          <Property Name="DistritoID" Type="Int32" Nullable="false" />
+          <Property Name="OtrasSenias" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cantones" Relationship="Self.FK__Ubicacion__Canto__6B24EA82" FromRole="Ubicaciones" ToRole="Cantones" />
+          <NavigationProperty Name="Distritos" Relationship="Self.FK__Ubicacion__Distr__6C190EBB" FromRole="Ubicaciones" ToRole="Distritos" />
+          <NavigationProperty Name="Provincias" Relationship="Self.FK__Ubicacion__Provi__6A30C649" FromRole="Ubicaciones" ToRole="Provincias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Ubicacion__Usuar__693CA210" FromRole="Ubicaciones" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaActualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RolID" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Configuraciones" Relationship="Self.FK_Configuraciones_Usuarios" FromRole="Usuarios" ToRole="Configuraciones" />
+          <NavigationProperty Name="Datos" Relationship="Self.FK__Datos__UsuarioID__04E4BC85" FromRole="Usuarios" ToRole="Datos" />
+          <NavigationProperty Name="Datos1" Relationship="Self.FK_Datos_Usuarios" FromRole="Usuarios" ToRole="Datos" />
+          <NavigationProperty Name="Login" Relationship="Self.FK__Login__UsuarioID__71D1E811" FromRole="Usuarios" ToRole="Login" />
+          <NavigationProperty Name="Reportes" Relationship="Self.FK__Reportes__Usuari__160F4887" FromRole="Usuarios" ToRole="Reportes" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__RolID__4D94879B" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Telefonos" Relationship="Self.FK__Telefonos__Usuar__5070F446" FromRole="Usuarios" ToRole="Telefonos" />
+          <NavigationProperty Name="Ubicaciones" Relationship="Self.FK__Ubicacion__Usuar__693CA210" FromRole="Usuarios" ToRole="Ubicaciones" />
+          <Property Name="FotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Cantones__Provin__619B8048">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Distritos__Canto__656C112C">
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="1" />
+          <End Role="Distritos" Type="Self.Distritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="CantonID" />
+            </Principal>
+            <Dependent Role="Distritos">
+              <PropertyRef Name="CantonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Canto__6B24EA82">
+          <End Role="Cantones" Type="Self.Cantones" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="CantonID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="CantonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogoPermisos_CatalogoPermisos">
+          <End Role="CatalogoPermisos" Type="Self.CatalogoPermisos" Multiplicity="1" />
+          <End Role="CatalogoPermisos1" Type="Self.CatalogoPermisos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoPermisos">
+              <PropertyRef Name="PermisoID" />
+            </Principal>
+            <Dependent Role="CatalogoPermisos1">
+              <PropertyRef Name="PermisoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datos_Categorias">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="CategoriaID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="CategoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuraciones_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Configuraciones" Type="Self.Configuraciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Configuraciones">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Datos__UsuarioID__04E4BC85">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Distr__6C190EBB">
+          <End Role="Distritos" Type="Self.Distritos" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distritos">
+              <PropertyRef Name="DistritoID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="DistritoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__UsuarioID__71D1E811">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__MenuI__5AEE82B9">
+          <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menus">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__Permi__59FA5E80">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="PermisoID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="PermisoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Provi__6A30C649">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="ProvinciaID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="ProvinciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reportes__Usuari__160F4887">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Reportes" Type="Self.Reportes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Reportes">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Roles_Per__RolID__59063A47">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Roles_Permisos" Type="Self.Roles_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Roles_Permisos">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__RolID__4D94879B">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Telefonos__Usuar__5070F446">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ubicacion__Usuar__693CA210">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Ubicaciones">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdminSeguridadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cantones" EntityType="Self.Cantones" />
+          <EntitySet Name="CatalogoPermisos" EntityType="Self.CatalogoPermisos" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" />
+          <EntitySet Name="Distritos" EntityType="Self.Distritos" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+          <EntitySet Name="Reportes" EntityType="Self.Reportes" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Roles_Permisos" EntityType="Self.Roles_Permisos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" />
+          <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__Cantones__Provin__619B8048" Association="Self.FK__Cantones__Provin__619B8048">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Distritos__Canto__656C112C" Association="Self.FK__Distritos__Canto__656C112C">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Distritos" EntitySet="Distritos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Canto__6B24EA82" Association="Self.FK__Ubicacion__Canto__6B24EA82">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogoPermisos_CatalogoPermisos" Association="Self.FK_CatalogoPermisos_CatalogoPermisos">
+            <End Role="CatalogoPermisos" EntitySet="CatalogoPermisos" />
+            <End Role="CatalogoPermisos1" EntitySet="CatalogoPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datos_Categorias" Association="Self.FK_Datos_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuraciones_Usuarios" Association="Self.FK_Configuraciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Datos__UsuarioID__04E4BC85" Association="Self.FK__Datos__UsuarioID__04E4BC85">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datos_Usuarios" Association="Self.FK_Datos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Distr__6C190EBB" Association="Self.FK__Ubicacion__Distr__6C190EBB">
+            <End Role="Distritos" EntitySet="Distritos" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__UsuarioID__71D1E811" Association="Self.FK__Login__UsuarioID__71D1E811">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Roles" Association="Self.FK_Login_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__MenuI__5AEE82B9" Association="Self.FK__Roles_Per__MenuI__5AEE82B9">
+            <End Role="Menus" EntitySet="Menus" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__Permi__59FA5E80" Association="Self.FK__Roles_Per__Permi__59FA5E80">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Provi__6A30C649" Association="Self.FK__Ubicacion__Provi__6A30C649">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reportes__Usuari__160F4887" Association="Self.FK__Reportes__Usuari__160F4887">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Reportes" EntitySet="Reportes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Roles_Per__RolID__59063A47" Association="Self.FK__Roles_Per__RolID__59063A47">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Roles_Permisos" EntitySet="Roles_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__RolID__4D94879B" Association="Self.FK__Usuarios__RolID__4D94879B">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Telefonos__Usuar__5070F446" Association="Self.FK__Telefonos__Usuar__5070F446">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ubicacion__Usuar__693CA210" Association="Self.FK__Ubicacion__Usuar__693CA210">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdminSeguridadModelStoreContainer" CdmEntityContainer="AdminSeguridadEntities">
+          <EntitySetMapping Name="Cantones">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Cantones">
+              <MappingFragment StoreEntitySet="Cantones">
+                <ScalarProperty Name="CantonID" ColumnName="CantonID" />
+                <ScalarProperty Name="NombreCanton" ColumnName="NombreCanton" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogoPermisos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.CatalogoPermisos">
+              <MappingFragment StoreEntitySet="CatalogoPermisos">
+                <ScalarProperty Name="PermisoID" ColumnName="PermisoID" />
+                <ScalarProperty Name="DescripcionPermiso" ColumnName="DescripcionPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuraciones">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Configuraciones">
+              <MappingFragment StoreEntitySet="Configuraciones">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Datos">
+              <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distritos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Distritos">
+              <MappingFragment StoreEntitySet="Distritos">
+                <ScalarProperty Name="DistritoID" ColumnName="DistritoID" />
+                <ScalarProperty Name="NombreDistrito" ColumnName="NombreDistrito" />
+                <ScalarProperty Name="CantonID" ColumnName="CantonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Menus">
+              <MappingFragment StoreEntitySet="Menus">
+                <ScalarProperty Name="GrupoMenu" ColumnName="GrupoMenu" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="NombreMenu" ColumnName="NombreMenu" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Permisos">
+              <MappingFragment StoreEntitySet="Permisos">
+                <ScalarProperty Name="PermisoID" ColumnName="PermisoID" />
+                <ScalarProperty Name="NombrePermiso" ColumnName="NombrePermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+                <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reportes">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Reportes">
+              <MappingFragment StoreEntitySet="Reportes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles_Permisos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Roles_Permisos">
+              <MappingFragment StoreEntitySet="Roles_Permisos">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="PermisoID" ColumnName="PermisoID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="PermisoLectura" ColumnName="PermisoLectura" />
+                <ScalarProperty Name="PermisoEscritura" ColumnName="PermisoEscritura" />
+                <ScalarProperty Name="PermisoModificacion" ColumnName="PermisoModificacion" />
+                <ScalarProperty Name="PermisoEliminacion" ColumnName="PermisoEliminacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telefonos">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Telefonos">
+              <MappingFragment StoreEntitySet="Telefonos">
+                <ScalarProperty Name="TelefonoID" ColumnName="TelefonoID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="CodigoPais" ColumnName="CodigoPais" />
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ubicaciones">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Ubicaciones">
+              <MappingFragment StoreEntitySet="Ubicaciones">
+                <ScalarProperty Name="UbicacionID" ColumnName="UbicacionID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+                <ScalarProperty Name="CantonID" ColumnName="CantonID" />
+                <ScalarProperty Name="DistritoID" ColumnName="DistritoID" />
+                <ScalarProperty Name="OtrasSenias" ColumnName="OtrasSenias" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="AdminSeguridadModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="FotoPath" ColumnName="FotoPath" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

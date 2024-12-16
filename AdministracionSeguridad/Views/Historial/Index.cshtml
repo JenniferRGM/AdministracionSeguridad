@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AdministracionSeguridad.Models.Historial>
+
+@{
+    ViewBag.Title = "Historial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historial</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.UsuarioID)</th>
+            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+            <th>@Html.DisplayNameFor(model => model.Modulo)</th>
+            <th>@Html.DisplayNameFor(model => model.TipoEvento)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaCreacion)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoEvento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
